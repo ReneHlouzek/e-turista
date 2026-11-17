@@ -222,12 +222,8 @@ body{
 .waypoint-back-left{left:30%;top:48%;width:16%;height:5%}
 .waypoint-back-right{left:50%;top:48%;width:16%;height:5%}
 /* Kanceláře ve druhém patře – pozice lze samostatně doladit */
-.waypoint-second-secretary{left:2%;top:34%;width:19%;height:8%}
-.waypoint-second-secretariat{left:22%;top:34%;width:22%;height:8%}
-.waypoint-second-deputy{left:45%;top:34%;width:27%;height:8%}
-.waypoint-second-mayor{left:74%;top:34%;width:19%;height:8%}
-.photo-stage[data-building="radnice-second-floor"] .waypoint-second-secretary text,
-.photo-stage[data-building="radnice-second-floor"] .waypoint-second-secretariat text,
-.photo-stage[data-building="radnice-second-floor"] .waypoint-second-deputy text,
-.photo-stage[data-building="radnice-second-floor"] .waypoint-second-mayor text{font-size:30px}
+.waypoint-second-secretary{left:2%;top:34%;width:19%;height:7%}
+.waypoint-second-secretariat{left:22%;top:34%;width:22%;height:7%}
+.waypoint-second-deputy{left:45%;top:34%;width:27%;height:7%}
+.waypoint-second-mayor{left:74%;top:34%;width:19%;height:7%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
