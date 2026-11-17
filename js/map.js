@@ -2350,6 +2350,10 @@ const photoModal = document.getElementById('photoModal');
 const buildingPhoto = document.getElementById('buildingPhoto');
 const photoCaption = document.getElementById('photoCaption');
 const photoClose = document.getElementById('photoClose');
+buildingPhoto.addEventListener('load', () => {
+  const stage = document.getElementById('photoStage');
+  requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add('image-ready')));
+});
 const photoHistory = [];
 let currentPhotoFile = null;
 function openBuildingImage(file, addHistory = true) {
@@ -2360,6 +2364,7 @@ function openBuildingImage(file, addHistory = true) {
   currentPhotoFile = file;
   const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice – přízemí', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_2.webp': 'Radnice – kanceláře', 'kostel.jpg': 'Kostel sv. Mikuláše' };
   const stage = document.getElementById('photoStage');
+  stage.classList.remove('image-ready');
   stage.dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : file === 'radnice_1_patro.webp' ? 'radnice-first-floor' : file === 'radnice_1_patro_2.webp' ? 'radnice-second-floor' : 'kostel';
   buildingPhoto.src = 'pic/' + file;
   buildingPhoto.alt = captions[file] || 'Fotografie budovy';
