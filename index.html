@@ -100,6 +100,35 @@ body{
 #info h2{font-family:"Caveat",cursive; font-size:27px; line-height:1; margin:0 0 4px; font-weight:700}
 #info p{margin:0; color:var(--ink-soft); font-size:14.5px}
 #info .x{position:absolute; top:4px; right:4px; width:30px; height:30px; font-size:22px}
+#info .info-image-btn{
+  display:inline-flex; align-items:center; justify-content:center; width:25px; height:25px;
+  margin-top:8px; border:1.5px solid var(--rule); border-radius:50%;
+  background:var(--sel); color:var(--sel-ink); font:700 17px/1 Georgia,serif; cursor:pointer;
+}
+#info .info-image-btn[hidden]{display:none}
+#info .info-image-btn:focus-visible{outline:2px solid #4f7fa6; outline-offset:2px}
+
+.photo-modal{
+  position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center;
+  padding:24px; background:rgba(20,17,14,.82);
+}
+.photo-modal.open{display:flex}
+.photo-modal-card{
+  position:relative; display:flex; flex-direction:column; align-items:center; gap:10px;
+  max-width:min(100%, 1000px); max-height:100%; padding:12px;
+  background:var(--panel); color:var(--ink); border:1.5px solid var(--rule);
+  border-radius:14px; box-shadow:0 12px 44px rgba(0,0,0,.35);
+}
+.photo-modal img{
+  display:block; max-width:100%; max-height:calc(100vh - 110px); object-fit:contain;
+  border-radius:6px;
+}
+.photo-modal .photo-close{
+  position:absolute; top:18px; right:18px; z-index:1; width:38px; height:38px;
+  border:1.5px solid var(--rule); border-radius:50%; background:var(--panel); color:var(--ink);
+  font:700 25px/1 sans-serif; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+.photo-modal .photo-caption{font:700 23px/1.1 "Caveat",cursive; text-align:center}
 
 #attr{
   position:fixed; right:10px; bottom:calc(env(safe-area-inset-bottom,0px) + 6px);
@@ -177,6 +206,15 @@ body{
 <div id="info" class="sheet" role="dialog" aria-live="polite">
   <button class="btn x" aria-label="Zavřít">×</button>
   <h2></h2><p></p>
+  <button id="infoImageBtn" class="info-image-btn" type="button" aria-label="Zobrazit fotografii budovy" title="Zobrazit fotografii" hidden>i</button>
+</div>
+
+<div id="photoModal" class="photo-modal" aria-hidden="true">
+  <div class="photo-modal-card" role="dialog" aria-modal="true" aria-label="Fotografie budovy">
+    <button id="photoClose" class="photo-close" type="button" aria-label="Zavřít fotografii">×</button>
+    <img id="buildingPhoto" alt="">
+    <div id="photoCaption" class="photo-caption"></div>
+  </div>
 </div>
 
 <div id="attr">Data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">přispěvatelé OpenStreetMap</a></div>
@@ -2330,6 +2368,10 @@ const LABELS = [];
 })();
 
 const ICONS = [];
+const BUILDING_IMAGES = new Map([
+  ['81195353', 'radnice.jpg'],
+  ['81195484', 'kostel.jpg']
+]);
 function drawLabels() {
   lg.setTransform(DPR, 0, 0, DPR, 0, 0);
   lg.clearRect(0, 0, W, H);
@@ -2354,8 +2396,21 @@ function drawLabels() {
     lg.textAlign = 'center'; lg.textBaseline = 'middle';
     lg.lineJoin = 'round'; lg.strokeStyle = halo; lg.lineWidth = L.style === 'place' ? 5 : 4;
     lg.fillStyle = L.style === 'river' || L.style === 'water' ? (night ? '#a9c6d8' : '#3f6b80') : inkCol;
-    if (L.style === 'bld') { lg.strokeText(L.t, 0, -2); lg.fillText(L.t, 0, -2); lg.strokeStyle = inkCol; lg.lineWidth = 1.2; lg.beginPath(); lg.moveTo(0, fs * 0.45); lg.lineTo(0, fs * 0.4 + 6); lg.stroke(); }
-    else { lg.strokeText(L.t, 0, 0); lg.fillText(L.t, 0, 0); }
+    if (L.style === 'bld') {
+      lg.strokeText(L.t, 0, -2); lg.fillText(L.t, 0, -2);
+      lg.strokeStyle = inkCol; lg.lineWidth = 1.2; lg.beginPath();
+      lg.moveTo(0, fs * 0.45); lg.lineTo(0, fs * 0.4 + 6); lg.stroke();
+      const imageFile = BUILDING_IMAGES.get(String(L.bid));
+      if (imageFile) {
+        const iy = fs * 0.45 + 16;
+        lg.beginPath(); lg.arc(0, iy, 8, 0, Math.PI * 2);
+        lg.fillStyle = night ? '#2b251f' : '#fbf7ea'; lg.fill();
+        lg.strokeStyle = inkCol; lg.lineWidth = 1.4; lg.stroke();
+        lg.font = 'italic 700 12px Georgia, "Times New Roman", serif';
+        lg.fillStyle = inkCol; lg.textBaseline = 'middle'; lg.fillText('i', 0, iy + 0.5);
+        ICONS.push({ x: sx, y: ty + iy, id: L.bid, file: imageFile });
+      }
+    } else { lg.strokeText(L.t, 0, 0); lg.fillText(L.t, 0, 0); }
     lg.restore();
   }
   if (selected) {
@@ -2460,7 +2515,7 @@ function pip(x, y, p) {
 }
 function pick(sx, sy) {
   const ic = ICONS.find(c => Math.hypot(c.x - sx, c.y - sy) < 13);
-  if (ic) { const b = BLDS.find(x => x.id === ic.id); if (b) showInfo(b); return; }
+  if (ic) { openBuildingImage(ic.file); return; }
   const [wx, wy] = screenToWorld(sx, sy);
   const cands = GO.query(wx - 1, wy - 1, wx + 1, wy + 1).filter(o => o.type === 'b');
   let best = null;
@@ -2473,6 +2528,10 @@ function pick(sx, sy) {
 }
 function showInfo(b) {
   const kind = KIND_NAMES[b.t] || 'Budova';
+  const imageFile = BUILDING_IMAGES.get(String(b.id));
+  const infoImageBtn = document.getElementById('infoImageBtn');
+  infoImageBtn.hidden = !imageFile;
+  infoImageBtn.onclick = imageFile ? () => openBuildingImage(imageFile) : null;
   info.querySelector('h2').textContent = b.n || kind;
   const bits = [];
   if (b.n) bits.push(kind);
@@ -2487,6 +2546,28 @@ function showInfo(b) {
 }
 function closeInfo() { info.classList.remove('open'); selected = null; requestDraw(); }
 info.querySelector('.x').onclick = closeInfo;
+
+const photoModal = document.getElementById('photoModal');
+const buildingPhoto = document.getElementById('buildingPhoto');
+const photoCaption = document.getElementById('photoCaption');
+const photoClose = document.getElementById('photoClose');
+function openBuildingImage(file) {
+  const captions = { 'radnice.jpg': 'Radnice', 'kostel.jpg': 'Kostel sv. Mikuláše' };
+  buildingPhoto.src = 'pic/' + file;
+  buildingPhoto.alt = captions[file] || 'Fotografie budovy';
+  photoCaption.textContent = captions[file] || '';
+  photoModal.classList.add('open');
+  photoModal.setAttribute('aria-hidden', 'false');
+}
+function closeBuildingImage() {
+  photoModal.classList.remove('open');
+  photoModal.setAttribute('aria-hidden', 'true');
+  buildingPhoto.removeAttribute('src');
+}
+photoClose.onclick = closeBuildingImage;
+photoModal.addEventListener('click', e => { if (e.target === photoModal) closeBuildingImage(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && photoModal.classList.contains('open')) closeBuildingImage(); });
+
 /* ---------- places list ---------- */
 const placesEl = document.getElementById('places'), placesBtn = document.getElementById('placesBtn');
 const theatre = BLDS.find(b => b.n === 'Tylovo divadlo');
@@ -2558,7 +2639,11 @@ document.getElementById('home').onclick = home;
     document.body.appendChild(t); setTimeout(() => t.remove(), 4500); };
   const openTab = () => {
     let url = null;
-    try { url = URL.createObjectURL(new Blob([PAGE_SRC], { type: 'text/html' })); } catch (e) { }
+    try {
+      const baseHref = new URL('.', location.href).href;
+      const pageWithBase = PAGE_SRC.replace('<head>', '<head><base href="' + baseHref.replace(/"/g, '%22') + '">');
+      url = URL.createObjectURL(new Blob([pageWithBase], { type: 'text/html' }));
+    } catch (e) { }
     const w = url ? window.open(url, '_blank') : null;
     if (!w) toast('Prohlížeč nedovolil otevřít novou kartu. Zvětšete prosím rámeček s mapou na stránce.');
   };
