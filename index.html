@@ -256,7 +256,6 @@ body{
 <script>
 (() => {
 "use strict";
-const PAGE_SRC = "<!doctype html>\n" + document.documentElement.outerHTML;
 const RAW = JSON.parse(document.getElementById('osm').textContent);
 
 /* ---------- projection ---------- */
@@ -2648,12 +2647,35 @@ function setMode(s, n) {
 document.querySelectorAll('[data-season]').forEach(b => b.onclick = () => setMode(b.dataset.season, night));
 document.querySelectorAll('[data-time]').forEach(b => b.onclick = () => setMode(season, b.dataset.time === 'night'));
 
-function prewarm() { // coarse level for whole map so fallback always exists
-  const k = LVL_MIN, tw = TILE / Math.pow(2, k);
-  for (let ix = Math.floor(WX0 / tw); ix <= Math.floor(WX1 / tw); ix++)
-    for (let iy = Math.floor((WY0 - 60) / tw); iy <= Math.floor(WY1 / tw); iy++) {
-      const kk = key(k, ix, iy); if (!cache.has(kk)) cache.set(kk, renderTile(k, ix, iy));
+let prewarmToken = 0;
+function prewarm() {
+  // Prepare only coarse tiles intersecting the current viewport; build them in short tasks.
+  const token = ++prewarmToken, k = LVL_MIN, tw = TILE / Math.pow(2, k);
+  const [x0, y0] = screenToWorld(0, 0), [x1, y1] = screenToWorld(W, H);
+  const ix0 = Math.max(Math.floor((WX0 - 20) / tw), Math.floor(Math.min(x0, x1) / tw));
+  const ix1 = Math.min(Math.floor((WX1 + 20) / tw), Math.floor(Math.max(x0, x1) / tw));
+  const iy0 = Math.max(Math.floor((WY0 - 60) / tw), Math.floor(Math.min(y0, y1) / tw));
+  const iy1 = Math.min(Math.floor((WY1 + 20) / tw), Math.floor(Math.max(y0, y1) / tw));
+  const jobs = [];
+  for (let ix = ix0; ix <= ix1; ix++) for (let iy = iy0; iy <= iy1; iy++) {
+    const kk = key(k, ix, iy);
+    if (!cache.has(kk)) jobs.push([ix, iy, Math.hypot((ix + 0.5) * tw - view.x, (iy + 0.5) * tw - view.y)]);
+  }
+  jobs.sort((a, b) => a[2] - b[2]);
+  const step = () => {
+    if (token !== prewarmToken) return;
+    const started = performance.now();
+    while (jobs.length && performance.now() - started < 7) {
+      const [ix, iy] = jobs.shift(), kk = key(k, ix, iy);
+      if (!cache.has(kk)) {
+        cache.set(kk, renderTile(k, ix, iy));
+        if (cache.size > CACHE_MAX) cache.delete(cache.keys().next().value);
+      }
     }
+    if (jobs.length) setTimeout(step, 0);
+    else requestDraw();
+  };
+  if (jobs.length) setTimeout(step, 0);
 }
 
 const home = () => { flyTo(PX(790, -80), PY(790, -80, 0) - 15, Math.min(W, H) < 600 ? 1.9 : 2.5); };
@@ -2674,8 +2696,9 @@ document.getElementById('home').onclick = home;
   const openTab = () => {
     let url = null;
     try {
+      const pageSource = "<!doctype html>\\n" + document.documentElement.outerHTML;
       const baseHref = new URL('.', location.href).href;
-      const pageWithBase = PAGE_SRC.replace('<head>', '<head><base href="' + baseHref.replace(/"/g, '%22') + '">');
+      const pageWithBase = pageSource.replace('<head>', '<head><base href="' + baseHref.replace(/"/g, '%22') + '">');
       url = URL.createObjectURL(new Blob([pageWithBase], { type: 'text/html' }));
     } catch (e) { }
     const w = url ? window.open(url, '_blank') : null;
