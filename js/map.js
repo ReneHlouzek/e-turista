@@ -2362,7 +2362,7 @@ function openBuildingImage(file, addHistory = true) {
     else photoHistory.length = 0;
   }
   currentPhotoFile = file;
-  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice – přízemí - Podatelna, Matrika, Obřadní síň', 'radnice_prizemi_1.webp': 'Radnice – Farní úřad', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_1.webp': 'Radnice – IT, Stavební odbor, Správní odbor', 'radnice_1_patro_2.webp': 'Radnice – Starosta, Místostarosta, Tajemník', 'kostel.jpg': 'Kostel sv. Mikuláše' };
+  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice - Podatelna, Matrika, Obřadní síň', 'radnice_prizemi_1.webp': 'Radnice – Farní úřad', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_1.webp': 'Radnice – IT, Stavební odbor, Správní odbor', 'radnice_1_patro_2.webp': 'Radnice – Starosta, Místostarosta, Tajemník', 'kostel.jpg': 'Kostel sv. Mikuláše' };
   const stage = document.getElementById('photoStage');
   stage.classList.remove('image-ready');
   stage.dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : file === 'radnice_1_patro.webp' ? 'radnice-first-floor' : file === 'radnice_1_patro_2.webp' ? 'radnice-second-floor' : 'kostel';
