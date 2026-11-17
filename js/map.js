@@ -2168,7 +2168,7 @@ const LABELS = [];
 
 const ICONS = [];
 const BUILDING_IMAGES = new Map([
-  ['81195353', 'radnice_prizemi.webp'],
+  ['81195353', 'radnice.jpg'],
   ['81195484', 'kostel.jpg']
 ]);
 function drawLabels() {
@@ -2352,7 +2352,7 @@ const photoCaption = document.getElementById('photoCaption');
 const photoClose = document.getElementById('photoClose');
 function openBuildingImage(file) {
   const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice – přízemí', 'kostel.jpg': 'Kostel sv. Mikuláše' };
-  document.getElementById('photoStage').dataset.building = (file === 'radnice.jpg' || file === 'radnice_prizemi.webp') ? 'radnice' : 'kostel';
+  document.getElementById('photoStage').dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : 'kostel';
   buildingPhoto.src = 'pic/' + file;
   buildingPhoto.alt = captions[file] || 'Fotografie budovy';
   photoCaption.textContent = captions[file] || '';
