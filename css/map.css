@@ -117,6 +117,11 @@ body{
   display:block; width:100%; height:auto; max-height:calc(100vh - 110px);
   object-fit:contain; border-radius:6px;
 }
+/* Ukazatele se zobrazí až po úplném načtení fotografie. */
+.photo-stage .waypoint-hotspot,
+.photo-stage .door-hotspot{opacity:0;visibility:hidden;transition:opacity .18s ease}
+.photo-stage.image-ready .waypoint-hotspot,
+.photo-stage.image-ready .door-hotspot{opacity:1;visibility:visible}
 .door-hotspot{
   display:none; position:absolute; z-index:2; padding:0;
   border:2px solid transparent; border-radius:7px;
