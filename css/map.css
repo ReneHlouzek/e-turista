@@ -186,13 +186,13 @@ body{
 .waypoint-hotspot svg{display:block;width:100%;height:100%;overflow:visible}
 .waypoint-hotspot .sign-shadow{fill:#68482f;stroke:#4d3526;stroke-width:5;stroke-linejoin:round}
 .waypoint-hotspot .sign-body{fill:#c58c48;stroke:#f0d39a;stroke-width:2.5;stroke-linejoin:round}
-.waypoint-hotspot text{fill:#fff2d2;stroke:#76502f;stroke-width:2px;paint-order:stroke;font:700 16px "Alegreya Sans",sans-serif;letter-spacing:.1px}
+.waypoint-hotspot text{fill:#fff2d2;stroke:#76502f;stroke-width:2px;paint-order:stroke;font:700 20px "Alegreya Sans",sans-serif;letter-spacing:.1px}
 .waypoint-hotspot:hover,.waypoint-hotspot:focus-visible{filter:drop-shadow(0 0 5px #ffcf62) drop-shadow(0 0 12px rgba(255,177,48,.95));outline:none}
 .waypoint-hotspot:hover .sign-body,.waypoint-hotspot:focus-visible .sign-body{fill:#e5b45f;stroke:#fff0b8;stroke-width:4}
 .waypoint-hotspot:hover text,.waypoint-hotspot:focus-visible text{fill:#fffbea}
-.waypoint-matrika{left:68%;top:43%;width:25%;height:7%}
-.waypoint-podatelna{left:3%;top:43%;width:25%;height:7%}
-.waypoint-obradni{left:52%;top:31%;width:27%;height:7%}
-.waypoint-farni{left:25%;top:38%;width:25%;height:7%}
+.waypoint-matrika{left:68%;top:43%;width:18%;height:7%}
+.waypoint-podatelna{left:3%;top:43%;width:19%;height:7%}
+.waypoint-obradni{left:52%;top:31%;width:22%;height:7%}
+.waypoint-farni{left:25%;top:38%;width:18.5%;height:7%}
 .waypoint-patro{left:25%;top:47%;width:15%;height:15%}
-@media(max-width:600px){.waypoint-hotspot text{font-size:18px}}
+@media(max-width:600px){.waypoint-hotspot text{font-size:20px}}
