@@ -2711,7 +2711,7 @@ document.getElementById('home').onclick = home;
   const openTab = () => {
     let url = null;
     try {
-      const pageSource = "<!doctype html>\\n" + document.documentElement.outerHTML;
+      const pageSource = "<!doctype html>\n" + document.documentElement.outerHTML;
       const baseHref = new URL('.', location.href).href;
       const pageWithBase = pageSource.replace('<head>', '<head><base href="' + baseHref.replace(/"/g, '%22') + '">');
       url = URL.createObjectURL(new Blob([pageWithBase], { type: 'text/html' }));
