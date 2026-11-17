@@ -224,6 +224,6 @@ body{
 /* Kanceláře ve druhém patře – pozice lze samostatně doladit */
 .waypoint-second-secretary{left:15%;top:55%;width:19%;height:7%}
 .waypoint-second-secretariat{left:60%;top:55%;width:19%;height:7%}
-.waypoint-second-deputy{left:30%;top:45%;width:19%;height:7%}
-.waypoint-second-mayor{left:50%;top:45%;width:19%;height:7%}
+.waypoint-second-deputy{left:35%;top:40%;width:19%;height:7%}
+.waypoint-second-mayor{left:45%;top:50%;width:19%;height:7%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
