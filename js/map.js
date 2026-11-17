@@ -2358,9 +2358,9 @@ function openBuildingImage(file, addHistory = true) {
     else photoHistory.length = 0;
   }
   currentPhotoFile = file;
-  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice – přízemí', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'kostel.jpg': 'Kostel sv. Mikuláše' };
+  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Radnice – přízemí', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_2.webp': 'Radnice – kanceláře', 'kostel.jpg': 'Kostel sv. Mikuláše' };
   const stage = document.getElementById('photoStage');
-  stage.dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : file === 'radnice_1_patro.webp' ? 'radnice-first-floor' : 'kostel';
+  stage.dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : file === 'radnice_1_patro.webp' ? 'radnice-first-floor' : file === 'radnice_1_patro_2.webp' ? 'radnice-second-floor' : 'kostel';
   buildingPhoto.src = 'pic/' + file;
   buildingPhoto.alt = captions[file] || 'Fotografie budovy';
   photoCaption.textContent = captions[file] || '';
@@ -2383,6 +2383,7 @@ document.getElementById('photoBack').onclick = () => {
 document.getElementById('photoMap').onclick = closeBuildingImage;
 document.getElementById('doorRadnice').onclick = () => openBuildingImage('radnice_prizemi.webp');
 document.querySelector('.waypoint-patro').onclick = () => openBuildingImage('radnice_1_patro.webp');
+document.querySelector('.waypoint-back-left').onclick = () => openBuildingImage('radnice_1_patro_2.webp');
 photoModal.addEventListener('click', e => { if (e.target === photoModal) closeBuildingImage(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && photoModal.classList.contains('open')) closeBuildingImage(); });
 
