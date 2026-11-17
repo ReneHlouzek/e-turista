@@ -149,6 +149,12 @@ body{
   font:700 25px/1 sans-serif; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.25);
 }
 .photo-modal .photo-caption{font:700 23px/1.1 "Caveat",cursive; text-align:center}
+.photo-navigation{position:absolute;top:18px;left:18px;z-index:2;display:flex;gap:8px}
+.photo-navigation button{display:grid;place-items:center;width:40px;height:40px;padding:8px;border:1.5px solid var(--rule);border-radius:50%;background:var(--panel);color:var(--ink);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.photo-navigation button:hover{background:var(--sel)}
+.photo-navigation button:focus-visible{outline:2.5px solid #4f7fa6;outline-offset:2px}
+.photo-navigation svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
 
 #attr{
   position:fixed; right:10px; bottom:calc(env(safe-area-inset-bottom,0px) + 6px);
