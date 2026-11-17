@@ -2392,7 +2392,7 @@ document.querySelector('.waypoint-patro').onclick = () => openBuildingImage('rad
 document.querySelector('.waypoint-back-right').onclick = () => openBuildingImage('radnice_1_patro_1.webp');
 document.querySelector('.waypoint-back-left').onclick = () => openBuildingImage('radnice_1_patro_2.webp');
 document.querySelector('.waypoint-second-mayor').onclick = () => openBuildingImage('Starosta.webp');
-document.querySelector('.waypoint-second-deputy').onclick = () => openBuildingImage('Mistostarosta.webp');
+document.querySelector('.waypoint-second-deputy').onclick = () => openBuildingImage('Mistostarosta.png');
 photoModal.addEventListener('click', e => { if (e.target === photoModal) closeBuildingImage(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && photoModal.classList.contains('open')) closeBuildingImage(); });
 
