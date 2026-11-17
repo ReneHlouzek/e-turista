@@ -201,7 +201,8 @@ body{
 .waypoint-hotspot:hover text,.waypoint-hotspot:focus-visible text{fill:#fffbea}
 
 /* Přízemí: zobrazují se pouze cíle přízemí */
-.photo-stage[data-building="radnice-interior"] .door-hotspot{display:none}
+.photo-stage[data-building="radnice-interior"] .door-hotspot,
+.photo-stage[data-building="kostel-interior"] .door-hotspot{display:none}
 .photo-stage[data-building="radnice-interior"] .waypoint-matrika,
 .photo-stage[data-building="radnice-interior"] .waypoint-podatelna,
 .photo-stage[data-building="radnice-interior"] .waypoint-obradni,
