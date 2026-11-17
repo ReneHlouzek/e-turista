@@ -207,6 +207,10 @@ body{
 .photo-stage[data-building="radnice-first-floor"] .waypoint-floor2,
 .photo-stage[data-building="radnice-first-floor"] .waypoint-back-left,
 .photo-stage[data-building="radnice-first-floor"] .waypoint-back-right{display:block}
+.photo-stage[data-building="radnice-second-floor"] .waypoint-second-secretary,
+.photo-stage[data-building="radnice-second-floor"] .waypoint-second-secretariat,
+.photo-stage[data-building="radnice-second-floor"] .waypoint-second-deputy,
+.photo-stage[data-building="radnice-second-floor"] .waypoint-second-mayor{display:block}
 
 /* Pozice ukazatelů – lze upravit samostatně */
 .waypoint-matrika{left:73%;top:55%;width:15%;height:7%}
@@ -217,4 +221,9 @@ body{
 .waypoint-floor2{left:50%;top:60%;width:25%;height:13%}
 .waypoint-back-left{left:30%;top:48%;width:16%;height:5%}
 .waypoint-back-right{left:50%;top:48%;width:16%;height:5%}
+/* Kanceláře ve druhém patře – pozice lze samostatně doladit */
+.waypoint-second-secretary{left:4%;top:34%;width:23%;height:8%}
+.waypoint-second-secretariat{left:27%;top:34%;width:23%;height:8%}
+.waypoint-second-deputy{left:50%;top:34%;width:23%;height:8%}
+.waypoint-second-mayor{left:73%;top:34%;width:23%;height:8%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
