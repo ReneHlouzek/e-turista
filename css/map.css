@@ -214,7 +214,7 @@ body{
 .waypoint-obradni{left:48%;top:45%;width:19%;height:7%}
 .waypoint-farni{left:33%;top:38%;width:15%;height:7%}
 .waypoint-patro{left:40%;top:47%;width:15%;height:15%}
-.waypoint-floor2{left:61%;top:39%;width:25%;height:13%}
-.waypoint-back-left{left:12%;top:15%;width:17%;height:9%}
-.waypoint-back-right{left:70%;top:15%;width:17%;height:9%}
+.waypoint-floor2{left:55%;top:60%;width:25%;height:13%}
+.waypoint-back-left{left:25%;top:60%;width:10%;height:9%}
+.waypoint-back-right{left:58%;top:60%;width:10%;height:9%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
