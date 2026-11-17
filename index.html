@@ -2354,14 +2354,7 @@ function drawLabels() {
     lg.textAlign = 'center'; lg.textBaseline = 'middle';
     lg.lineJoin = 'round'; lg.strokeStyle = halo; lg.lineWidth = L.style === 'place' ? 5 : 4;
     lg.fillStyle = L.style === 'river' || L.style === 'water' ? (night ? '#a9c6d8' : '#3f6b80') : inkCol;
-    if (L.style === 'bld' && hasScene) {
-      lg.strokeText(L.t, 0, -2); lg.fillText(L.t, 0, -2);
-      const iy = fs * 0.45 + 9;
-      lg.beginPath(); lg.arc(0, iy, 8, 0, Math.PI * 2); lg.fillStyle = night ? '#2b251f' : '#fbf7ea'; lg.fill();
-      lg.strokeStyle = inkCol; lg.lineWidth = 1.4; lg.stroke();
-      lg.font = 'italic 700 12px Georgia, "Times New Roman", serif'; lg.fillStyle = inkCol; lg.textBaseline = 'middle'; lg.fillText('i', 0, iy + 0.5);
-      ICONS.push({ x: sx, y: ty + iy, id: L.bid });
-    } else if (L.style === 'bld') { lg.strokeText(L.t, 0, -2); lg.fillText(L.t, 0, -2); lg.strokeStyle = inkCol; lg.lineWidth = 1.2; lg.beginPath(); lg.moveTo(0, fs * 0.45); lg.lineTo(0, fs * 0.4 + 6); lg.stroke(); }
+    if (L.style === 'bld') { lg.strokeText(L.t, 0, -2); lg.fillText(L.t, 0, -2); lg.strokeStyle = inkCol; lg.lineWidth = 1.2; lg.beginPath(); lg.moveTo(0, fs * 0.45); lg.lineTo(0, fs * 0.4 + 6); lg.stroke(); }
     else { lg.strokeText(L.t, 0, 0); lg.fillText(L.t, 0, 0); }
     lg.restore();
   }
@@ -2599,7 +2592,7 @@ const t = theatre || BLDS[0];
 view.x = PX(790, -80); view.y = PY(790, -80, 0) - 15; view.s = Math.min(W, H) < 600 ? 1.9 : 2.5;
 setTimeout(() => { prewarm(); requestDraw(); }, 30);
 if (document.fonts) document.fonts.ready.then(requestDraw);
-if (location.hash) setTimeout(routeHash, 400);
+
 window.__view = view; window.__draw = requestDraw; window.__queue = () => queue.length; window.__setMode = setMode;
 })();
 </script>
