@@ -251,16 +251,8 @@ body{
   filter:drop-shadow(0 0 5px rgba(255,213,91,.95)) drop-shadow(0 0 13px rgba(255,174,35,.9));
   outline:none;
 }
-.church-chandelier{
-  clip-path:polygon(45% 12%,49% 12%,51% 17%,53% 22%,56% 31%,58% 35%,58% 42%,56% 47%,54% 49%,53% 43%,51% 39%,49% 39%,47% 44%,45% 49%,43% 45%,41% 40%,40% 34%,42% 29%,43% 22%);
-}
-.church-left-altar{
-  clip-path:polygon(15% 32%,18% 31%,20% 34%,22% 29%,25% 28%,28% 32%,30% 35%,33% 33%,34% 42%,34% 57%,32% 65%,30% 66%,29% 61%,27% 65%,25% 65%,23% 61%,21% 65%,19% 64%,17% 60%,15% 62%,13% 58%,14% 45%);
-}
-.church-right-altar{
-  clip-path:polygon(67% 35%,69% 32%,72% 34%,74% 30%,77% 28%,80% 32%,82% 31%,84% 37%,85% 48%,86% 59%,84% 64%,82% 62%,80% 66%,78% 65%,76% 61%,74% 65%,72% 65%,70% 61%,68% 63%,66% 58%);
-}
-.church-main-altar{
-  clip-path:polygon(37% 52%,40% 51%,42% 54%,44% 50%,47% 49%,49% 46%,51% 48%,53% 51%,56% 50%,59% 54%,62% 53%,63% 62%,61% 67%,59% 68%,57% 65%,55% 68%,52% 68%,50% 65%,48% 68%,45% 67%,43% 64%,41% 67%,39% 65%,37% 62%);
-}
+.church-chandelier{inset:auto;left:40.8%;top:12.3%;width:16.7%;height:38%}
+.church-left-altar{inset:auto;left:14%;top:28.4%;width:21%;height:39%}
+.church-right-altar{inset:auto;left:65.7%;top:28.4%;width:19.9%;height:38.8%}
+.church-main-altar{inset:auto;left:36.2%;top:48.3%;width:27.7%;height:24.2%}
 @media(prefers-reduced-motion:reduce){.photo-stage .church-hotspot{transition:none}}
