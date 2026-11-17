@@ -2389,6 +2389,8 @@ document.getElementById('photoMap').onclick = closeBuildingImage;
 document.getElementById('doorRadnice').onclick = () => openBuildingImage('radnice_prizemi.webp');
 document.querySelector('.waypoint-patro').onclick = () => openBuildingImage('radnice_1_patro.webp');
 document.querySelector('.waypoint-back-left').onclick = () => openBuildingImage('radnice_1_patro_2.webp');
+document.querySelector('.waypoint-second-mayor').onclick = () => openBuildingImage('Starosta.webp');
+document.querySelector('.waypoint-second-deputy').onclick = () => openBuildingImage('Mistostarosta.webp');
 photoModal.addEventListener('click', e => { if (e.target === photoModal) closeBuildingImage(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && photoModal.classList.contains('open')) closeBuildingImage(); });
 
