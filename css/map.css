@@ -195,4 +195,14 @@ body{
 .waypoint-obradni{left:48%;top:45%;width:19%;height:7%}
 .waypoint-farni{left:33%;top:38%;width:15%;height:7%}
 .waypoint-patro{left:40%;top:47%;width:15%;height:15%}
+.photo-stage[data-building="radnice-first-floor"] .waypoint-hotspot{display:block}
+.photo-stage[data-building="radnice-first-floor"] .waypoint-matrika,
+.photo-stage[data-building="radnice-first-floor"] .waypoint-podatelna,
+.photo-stage[data-building="radnice-first-floor"] .waypoint-obradni,
+.photo-stage[data-building="radnice-first-floor"] .waypoint-farni,
+.photo-stage[data-building="radnice-first-floor"] .waypoint-patro{display:none}
+.waypoint-floor2{left:61%;top:39%;width:25%;height:13%}
+.waypoint-floor2 text{font-size:25px}
+.waypoint-back-left{left:12%;top:15%;width:17%;height:9%}
+.waypoint-back-right{left:70%;top:15%;width:17%;height:9%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
