@@ -2362,7 +2362,7 @@ function openBuildingImage(file, addHistory = true) {
     else photoHistory.length = 0;
   }
   currentPhotoFile = file;
-  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Podatelna, Matrika, Obřadní síň', 'radnice_prizemi_1.webp': 'Farní úřad', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_1.webp': 'IT, Stavební odbor, Správní odbor', 'radnice_1_patro_2.webp': 'Starosta, Místostarosta, Tajemník', 'kostel.jpg': 'Kostel sv. Mikuláše', 'Kostel_interier.png': 'Kostel sv. Mikuláše – interiér', 'Kostel_leva_strana.png': 'Kostel – levý oltář', 'Kostel_Luster.png': 'Kostel – lustr', 'Kostel_oltar.png': 'Kostel – hlavní oltář', 'Kostel_prava_strana.png': 'Kostel – pravý oltář' };
+  const captions = { 'radnice.jpg': 'Radnice', 'radnice_prizemi.webp': 'Podatelna, Matrika, Obřadní síň', 'radnice_prizemi_1.webp': 'Farní úřad', 'radnice_1_patro.webp': 'Radnice – 1. patro', 'radnice_1_patro_1.webp': 'IT, Stavební odbor, Správní odbor', 'radnice_1_patro_2.webp': 'Starosta, Místostarosta, Tajemník', 'kostel.jpg': 'Kostel sv. Mikuláše', 'Kostel_interier.png': 'Kostel sv. Mikuláše – interiér', 'Kostel_leva_strana.png': 'Kostel – levý oltář', 'Kostel_Luster.png': 'Kostel – lustr', 'Kostel_oltar.png': 'Kostel – hlavní oltář', 'Kostel_prava_strana.png': 'Kostel – pravý oltář', 'Kostel_varhany.png': 'Kostel – varhany' };
   const stage = document.getElementById('photoStage');
   stage.classList.remove('image-ready');
   stage.dataset.building = file === 'radnice.jpg' ? 'radnice' : file === 'radnice_prizemi.webp' ? 'radnice-interior' : file === 'radnice_1_patro.webp' ? 'radnice-first-floor' : file === 'radnice_1_patro_2.webp' ? 'radnice-second-floor' : file === 'Kostel_interier.png' ? 'kostel-interior' : 'kostel';
@@ -2391,6 +2391,7 @@ document.querySelector('.church-left-altar').onclick = () => openBuildingImage('
 document.querySelector('.church-chandelier').onclick = () => openBuildingImage('Kostel_Luster.png');
 document.querySelector('.church-main-altar').onclick = () => openBuildingImage('Kostel_oltar.png');
 document.querySelector('.church-right-altar').onclick = () => openBuildingImage('Kostel_prava_strana.png');
+document.querySelector('.church-organ').onclick = () => openBuildingImage('Kostel_varhany.png');
 document.querySelector('.waypoint-farni').onclick = () => openBuildingImage('radnice_prizemi_1.webp');
 document.querySelector('.waypoint-patro').onclick = () => openBuildingImage('radnice_1_patro.webp');
 document.querySelector('.waypoint-back-right').onclick = () => openBuildingImage('radnice_1_patro_1.webp');
