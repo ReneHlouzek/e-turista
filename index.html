@@ -1530,7 +1530,22 @@ const XOBJ = [];
 AREAS.forEach(a => GA.add(a));
 LINES.forEach(l => { l.bb = [l.bb[0] - 6, l.bb[1] - 6, l.bb[2] + 6, l.bb[3] + 6]; GL.add(l); });
 BLDS.forEach(b => GO.add(b));
-TREES.forEach(t => GO.add(t));
+// Trees are numerous; index them in short background tasks so the map can become interactive first.
+let treeIndex = 0;
+function indexTreesInBackground() {
+  const started = performance.now();
+  while (treeIndex < TREES.length && performance.now() - started < 8) {
+    GO.add(TREES[treeIndex++]);
+  }
+  if (treeIndex < TREES.length) {
+    setTimeout(indexTreesInBackground, 0);
+  } else {
+    // Earlier tiles were rendered without the complete tree layer; rebuild them once.
+    cache.clear();
+    requestDraw();
+  }
+}
+setTimeout(indexTreesInBackground, 0);
 MONS.forEach(m => GO.add(m));
 XOBJ.forEach(x => GO.add(x));
 const LAMPOBJ = LAMPS.map(([e, n]) => { const X = PX(e, n), Y = PY(e, n, 0); return { X, Y, bb: [X - 12, Y - 12, X + 12, Y + 12] }; });
