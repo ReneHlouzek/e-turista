@@ -177,3 +177,19 @@ body{
 #fsBtn svg{width:18px; height:18px}
 #fsBtn[hidden]{display:none}
 
+
+/* Navigační šipky v interiéru radnice */
+.waypoint-hotspot{display:none;position:absolute;z-index:3;padding:0;margin:0;border:0;background:transparent;cursor:pointer;overflow:visible;color:#fff4c7;filter:drop-shadow(0 2px 3px rgba(40,25,10,.9))}
+.photo-stage[data-building="radnice"] .waypoint-hotspot{display:block}
+.waypoint-hotspot svg{display:block;width:100%;height:100%;overflow:visible}
+.waypoint-hotspot path{fill:none;stroke:#fff0b0;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.waypoint-hotspot text{fill:#fff4c7;stroke:rgba(53,39,20,.92);stroke-width:4px;paint-order:stroke;font:700 17px "Alegreya Sans",sans-serif;letter-spacing:.2px}
+.waypoint-hotspot:hover,.waypoint-hotspot:focus-visible{filter:drop-shadow(0 0 5px #ffbf36) drop-shadow(0 0 11px rgba(255,190,45,.95));outline:none}
+.waypoint-hotspot:hover path,.waypoint-hotspot:focus-visible path{stroke:#ffe06b;stroke-width:5}
+.waypoint-hotspot:hover text,.waypoint-hotspot:focus-visible text{fill:#ffe06b}
+.waypoint-matrika{left:64%;top:38%;width:27%;height:8%}
+.waypoint-podatelna{left:3%;top:38%;width:28%;height:8%}
+.waypoint-obradni{left:54%;top:28%;width:31%;height:9%}
+.waypoint-farni{left:21%;top:43%;width:29%;height:9%}
+.waypoint-patro{left:25%;top:45%;width:23%;height:15%}
+@media(max-width:600px){.waypoint-hotspot text{font-size:19px}.waypoint-hotspot path{stroke-width:4.5}}
