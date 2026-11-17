@@ -2385,7 +2385,6 @@ document.getElementById('photoBack').onclick = () => {
   if (previousFile) openBuildingImage(previousFile, false);
   else closeBuildingImage();
 };
-document.getElementById('photoMap').onclick = closeBuildingImage;
 document.getElementById('doorRadnice').onclick = () => openBuildingImage('radnice_prizemi.webp');
 document.querySelector('.waypoint-farni').onclick = () => openBuildingImage('radnice_prizemi_1.webp');
 document.querySelector('.waypoint-patro').onclick = () => openBuildingImage('radnice_1_patro.webp');
