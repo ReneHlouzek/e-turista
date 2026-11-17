@@ -215,6 +215,6 @@ body{
 .waypoint-farni{left:33%;top:38%;width:15%;height:7%}
 .waypoint-patro{left:40%;top:47%;width:15%;height:15%}
 .waypoint-floor2{left:50%;top:60%;width:25%;height:13%}
-.waypoint-back-left{left:35%;top:40%;width:15%;height:10%}
-.waypoint-back-right{left:48%;top:40%;width:15%;height:10%}
+.waypoint-back-left{left:35%;top:45%;width:15%;height:10%}
+.waypoint-back-right{left:48%;top:45%;width:15%;height:10%}
 @media(max-width:600px){.waypoint-hotspot text{font-size:25px}}
