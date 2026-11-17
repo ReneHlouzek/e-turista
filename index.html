@@ -2343,18 +2343,19 @@ function draw() {
   }
   need.sort((a, b) => a[3] - b[3]);
   queue = need;
+  queueIndex = 0;
   drawLabels();
   if (queue.length) scheduleWork();
   else hideLoading();
 }
 
-let working = false;
+let working = false, queueIndex = 0;
 function scheduleWork() {
   if (working) return; working = true;
   const step = () => {
     const t0 = performance.now();
-    while (queue.length && performance.now() - t0 < 14) {
-      const [k, ix, iy] = queue.shift();
+    while (queueIndex < queue.length && performance.now() - t0 < 14) {
+      const [k, ix, iy] = queue[queueIndex++];
       const kk = key(k, ix, iy);
       if (cache.has(kk)) continue;
       cache.set(kk, renderTile(k, ix, iy));
@@ -2677,17 +2678,18 @@ function prewarm() {
     if (!cache.has(kk)) jobs.push([ix, iy, Math.hypot((ix + 0.5) * tw - view.x, (iy + 0.5) * tw - view.y)]);
   }
   jobs.sort((a, b) => a[2] - b[2]);
+  let jobIndex = 0;
   const step = () => {
     if (token !== prewarmToken) return;
     const started = performance.now();
-    while (jobs.length && performance.now() - started < 7) {
-      const [ix, iy] = jobs.shift(), kk = key(k, ix, iy);
+    while (jobIndex < jobs.length && performance.now() - started < 7) {
+      const [ix, iy] = jobs[jobIndex++], kk = key(k, ix, iy);
       if (!cache.has(kk)) {
         cache.set(kk, renderTile(k, ix, iy));
         if (cache.size > CACHE_MAX) cache.delete(cache.keys().next().value);
       }
     }
-    if (jobs.length) setTimeout(step, 0);
+    if (jobIndex < jobs.length) setTimeout(step, 0);
     else requestDraw();
   };
   if (jobs.length) setTimeout(step, 0);
