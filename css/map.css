@@ -255,4 +255,5 @@ body{
 .photo-stage .church-left-altar{inset:auto;left:14%;top:28.4%;width:21%;height:39%}
 .photo-stage .church-right-altar{inset:auto;left:65.7%;top:28.4%;width:19.9%;height:38.8%}
 .photo-stage .church-main-altar{inset:auto;left:36.2%;top:48.3%;width:27.7%;height:24.2%}
+.photo-stage .church-organ{inset:auto;left:52%;top:3.5%;width:27%;height:12%}
 @media(prefers-reduced-motion:reduce){.photo-stage .church-hotspot{transition:none}}
