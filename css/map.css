@@ -251,8 +251,8 @@ body{
   filter:drop-shadow(0 0 5px rgba(255,213,91,.95)) drop-shadow(0 0 13px rgba(255,174,35,.9));
   outline:none;
 }
-.church-chandelier{inset:auto;left:40.8%;top:12.3%;width:16.7%;height:38%}
-.church-left-altar{inset:auto;left:14%;top:28.4%;width:21%;height:39%}
-.church-right-altar{inset:auto;left:65.7%;top:28.4%;width:19.9%;height:38.8%}
-.church-main-altar{inset:auto;left:36.2%;top:48.3%;width:27.7%;height:24.2%}
+.photo-stage .church-chandelier{inset:auto;left:40.8%;top:12.3%;width:16.7%;height:38%}
+.photo-stage .church-left-altar{inset:auto;left:14%;top:28.4%;width:21%;height:39%}
+.photo-stage .church-right-altar{inset:auto;left:65.7%;top:28.4%;width:19.9%;height:38.8%}
+.photo-stage .church-main-altar{inset:auto;left:36.2%;top:48.3%;width:27.7%;height:24.2%}
 @media(prefers-reduced-motion:reduce){.photo-stage .church-hotspot{transition:none}}
